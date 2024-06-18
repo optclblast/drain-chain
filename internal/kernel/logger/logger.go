@@ -13,6 +13,12 @@ type Logger struct {
 	*slog.Logger
 }
 
+func (l *Logger) WithGroup(g string) *Logger {
+	gl := l.Logger.WithGroup(g)
+
+	return &Logger{gl}
+}
+
 func (l *Logger) Notice(msg string, args ...any) {
 	l.NoticeContext(context.TODO(), msg, args...)
 }
